@@ -7,5 +7,5 @@ kernel:
     type: annotation
 
 app_lucky_number:
-    path: /lucky/number
-    controller: App\Controller\LuckyController::number
+    path: /invoice/{invoiceId}
+    controller: App\Controller\InvoiceController::invoice

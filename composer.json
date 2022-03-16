@@ -24,6 +24,7 @@
         "symfony/form": "6.0.*",
         "symfony/framework-bundle": "6.0.*",
         "symfony/http-client": "6.0.*",
+        "symfony/http-kernel": "6.0.*",
         "symfony/intl": "6.0.*",
         "symfony/mailer": "6.0.*",
         "symfony/mime": "6.0.*",
@@ -100,7 +101,7 @@
     },
     "require-dev": {
         "symfony/debug-bundle": "6.0.*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.38",
         "symfony/stopwatch": "6.0.*",
         "symfony/web-profiler-bundle": "6.0.*"
     }

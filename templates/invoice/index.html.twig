@@ -1,0 +1,49 @@
+{% extends 'invoice/base.html.twig' %}
+
+{% block content %}
+     <div id="invoice">
+       
+    </div>
+
+    <table>
+    <thead>
+    <tr>
+        <th class="col2">Description</th>
+        <th class="col3">Price</th>
+        <th class="col4">Quantity</th>
+        <th class="col4">Per Tax</th>
+        <th class="col5">Total</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% set netto = 0 %}
+    {% for invoiceline in invoicelines %}
+    <tr>
+        <td>{{ invoiceline.description}}</td>
+        <td class="col4">{{ invoiceline.amount |number_format(2, '.', ',')}}</td>
+        <td class="col3">{{ invoiceline.quantity }}</td>
+        <td class="col4">{{ invoiceline.vat |number_format(2, '.', ',')}}</td>
+        {% set netto  = (invoiceline.quantity * invoiceline.amount) + netto %}
+        <td class="col3">{{ (invoiceline.quantity * invoiceline.amount) |number_format(2, '.', ',') }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    <div id="invoice-total">
+        <dl>
+            <dt><strong>Subtotal</strong></dt>
+            <dd><strong>{{ netto }}</strong></dd>
+            {% set tax = 0 %}
+            {% for  invoiceline in invoicelines %}
+            {% set tax = invoiceline.vat + tax %}
+            {% endfor %}
+            <dt>total tax</dt>
+            <dd>{{ tax|number_format(2, '.', ',') }}</dd>
+        </dl>
+        <dl class="invoice-total">
+        <dt>Balance Due</dt>
+        <dd>{{(netto + tax)|number_format(2, '.', ',')}} EUR</dd>
+        </dl>
+    </div>  
+{% endblock %}
